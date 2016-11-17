@@ -14,7 +14,11 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/user', function (Request $request) {
-    return $request->user();
+    $user = [
+        'name' => $request->user()->name
+    ];
+
+    return $user;
 })->middleware('auth:api');
 
 Route::post('access-token','Api\AuthController@accessToken');
