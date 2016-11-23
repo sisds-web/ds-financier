@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => DSFinancier\User::class,
+        'model' => \DSFinancier\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

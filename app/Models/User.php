@@ -1,12 +1,12 @@
 <?php
 
-namespace DSFinancier;
+namespace DSFinancier\Models;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticable implements JWTSubject
 {
     use Notifiable;
 

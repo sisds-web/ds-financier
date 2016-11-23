@@ -13,14 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    $user = [
-        'name' => $request->user()->name
-    ];
+Route::group(['middleware'=>'cors', 'as' => 'api'],function(){
 
-    return $user;
-})->middleware('auth:api');
+    Route::post('access-token','Api\AuthController@accessToken')->name('access-token');
+    Route::post('refresh-token','Api\AuthController@refreshToken')->name('refresh-token');
 
-Route::post('access-token','Api\AuthController@accessToken');
-Route::post('refresh-token','Api\AuthController@refreshToken');
-Route::post('/logout','Api\AuthController@logout')->middleware('auth:api');
+    Route::group(['middleware'=>'auth:api'],function(){
+        Route::get('/user', function (Request $request) {
+            $user = $request->user('api');
+            return $user;
+        })->middleware('auth:api')->name('user');
+
+
+        Route::post('/logout','Api\AuthController@logout')->middleware('auth:api')->name('logout');
+    });
+
+});

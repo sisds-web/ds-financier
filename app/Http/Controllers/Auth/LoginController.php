@@ -3,7 +3,7 @@
 namespace DSFinancier\Http\Controllers\Auth;
 
 use DSFinancier\Http\Controllers\Controller;
-use DSFinancier\User;
+use DSFinancier\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 

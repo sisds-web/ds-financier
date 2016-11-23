@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(DSFinancier\User::class, function (Faker\Generator $faker) {
+$factory->define(\DSFinancier\Models\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
@@ -23,8 +23,8 @@ $factory->define(DSFinancier\User::class, function (Faker\Generator $faker) {
 });
 
 //DEFININDO STATE DA FACTORY
-$factory->state(\DSFinancier\User::class,'admin',function (Faker\Generator $faker) {
+$factory->state(\DSFinancier\Models\User::class,'admin',function (Faker\Generator $faker) {
     return [
-        'role'=> \DSFinancier\User::ROLE_ADMIN
+        'role'=> \DSFinancier\Models\User::ROLE_ADMIN
     ];
 });

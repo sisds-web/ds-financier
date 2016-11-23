@@ -3,7 +3,7 @@
 namespace DSFinancier\Http\Controllers\Api;
 
 use DSFinancier\Http\Controllers\Controller;
-use DSFinancier\User;
+use DSFinancier\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -78,7 +78,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => $message
-        ],401);
+        ],400);
     }
 
 

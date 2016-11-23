@@ -2,7 +2,7 @@
 
 namespace DSFinancier\Providers;
 
-use DSFinancier\User;
+use DSFinancier\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

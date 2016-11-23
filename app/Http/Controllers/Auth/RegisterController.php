@@ -2,7 +2,7 @@
 
 namespace DSFinancier\Http\Controllers\Auth;
 
-use DSFinancier\User;
+use DSFinancier\Models\User;
 use Validator;
 use DSFinancier\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -58,7 +58,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return \DSFinancier\Models\User
      */
     protected function create(array $data)
     {
