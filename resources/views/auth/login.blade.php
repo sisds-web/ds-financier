@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row" style="margin-top: 5%;">
             <div class="col s8 offset-s2 z-depth-2">
-                <h5 class="center">DS-Financeiro Admin</h5>
+                <h5 class="center">SISDS Financeiro Admin</h5>
                 <form method="POST" action="{{ url(env('REDIRECT_LOGIN')) }}">
                     {{ csrf_field() }}
                     <div class="row">

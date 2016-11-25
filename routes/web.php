@@ -31,6 +31,9 @@ Route::get('/app', function () {
 /**
  * Grupo para rota admin
  */
+
+
+
 Route::group(['prefix'=>'admin','as'=>'admin.'],function(){
 
     Auth::routes();

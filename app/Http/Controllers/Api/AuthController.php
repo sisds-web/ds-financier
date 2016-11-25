@@ -21,6 +21,7 @@ class AuthController extends Controller
      * Criando token de acesso a api
      */
     public function accessToken(Request $request){
+
         $this->validateLogin($request);
 
         if ($this->hasTooManyLoginAttempts($request)) {

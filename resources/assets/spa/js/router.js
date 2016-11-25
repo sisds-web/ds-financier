@@ -17,7 +17,7 @@ const router = new VueRouter();
 router.map(routerMap);
 
 /**
- * Criando teste de autenticação
+ * Criando help de autenticação
  */
 router.beforeEach(({to,next}) => {
     if(to.auth && !Auth.checkAuth()){
@@ -33,3 +33,7 @@ router.start({
         'app': AppComponent
     }
 },'body');
+
+router.redirect({
+    '*': '/'
+});

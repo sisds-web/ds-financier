@@ -16,7 +16,7 @@
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
+            'csrfToken' => csrf_token()
         ]); ?>
     </script>
 </head>
@@ -28,12 +28,12 @@
                 $menuConfig = [
                         'name' => Auth::user()->name,
                         'menus' => [
-                                ['name' => 'Contas a pagar', 'url'  => '/teste', 'dropdownId' => 'teste'],
+                                ['name' => 'Contas a pagar', 'url'  => '/help', 'dropdownId' => 'help'],
                                 ['name' => 'Contas a receber', 'url'  => '/teste1']
                         ],
                         'menusDropdown' => [
                                 [
-                                        'id' => 'teste',
+                                        'id' => 'help',
                                         'items' => [
                                                 ['name' => 'Listar contas', 'url'  => '/listar'],
                                                 ['name' => 'Criar contas', 'url'  => '/criar']

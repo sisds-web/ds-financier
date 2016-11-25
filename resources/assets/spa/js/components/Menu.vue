@@ -7,18 +7,18 @@
         </li>
     </ul>
     <div class="navbar-fixed">
-        <nav class="blue-grey lighten-1">
+        <nav >
             <div class="nav-wrapper">
-                <a href="#!" class="right hide-on-small-only brand-logo">Code Contas</a>
+                <a href="#!" class="left hide-on-small-only brand-logo orange lighten-3 black-text">SISDS Financeiro&nbsp;</a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse">
                     <i class="material-icons">menu</i>
                 </a>
-                <ul class="hide-on-med-and-down">
+                <ul class="right hide-on-med-and-down">
                     <li v-for="o in menus">
                         <a v-if="o.dropdownId" class="dropdown-submenu" href="!#" v-bind:data-activates="o.dropdownId">
-                            {{o.name}} <i class="material-icons right">arrow_drop_down</i>
+                            {{{ o.icon }}}{{o.name}} <i class="material-icons right">arrow_drop_down</i>
                         </a>
-                        <a v-else v-link="{name: o.routeName}">{{o.name}}</a>
+                        <a v-else v-link="{name: o.routeName}">{{{ o.icon }}}{{o.name}}</a>
                     </li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
@@ -29,9 +29,17 @@
             </div>
         </nav>
     </div>
+    <router-view></router-view>
+
 </template>
 
 <script type="text/javascript">
+    import LocalStorage from '../services/localStorage';
+    let userOBJ = LocalStorage.getObject('user');
+    let user = '';
+    if(userOBJ){
+        user = userOBJ.name;
+    }
     export default {
         ready(){
             $(".button-collapse").sideNav();
@@ -40,26 +48,24 @@
         data(){
             return{
                 menus:
-                        [
-                            {name: "Contas a Pagar", routeName: 'dashboard', dropdownId:'menu-1'},
-                            {name: "Contas a Receber", routeName: 'dashboard', dropdownId:'menu-2'},
-                            {name: "DashBoard", routeName: 'dashboard'}
-                        ],
+                    [
+                        {name: "DashBoard", routeName: 'dashboard',icon: '<i class="material-icons left">dashboard</i>'},
+                        {name: "Ajuda", routeName: 'menu', dropdownId:'menu-ajuda',icon: '<i class="material-icons left">live_help</i>'},
+                        {name: user, routeName: 'auth.logout',dropdownId:'menu-user',icon: '<i class="material-icons left">account_box</i>'}
+                    ],
                 menusDropdown:[
                     {
-                        id:'menu-1',items:[
-                        {name: "Listar Contas", routeName: 'dashboard'},
-                        {name: "Nova Conta", routeName: 'dashboard'}
-                    ]
+                        id:'menu-ajuda',items:[
+                            {name: "Ajuda", routeName: 'help'}
+                        ]
                     },
                     {
-                        id:'menu-2',items:[
-                        {name: "Listar Contas", routeName: 'dashboard'},
-                        {name: "Nova Conta", routeName: 'dashboard'}
-                    ]
+                        id:'menu-user',items:[
+                            {name: "logout", routeName: 'auth.logout'}
+                        ]
                     }
                 ]
-            };
+            }
         }
     };
 </script>

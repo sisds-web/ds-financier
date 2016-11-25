@@ -9,10 +9,10 @@ use Tymon\JWTAuth\Token;
  */
 class Manager extends JwtManager{
 
-    public function refresh(Token $token, $forceForever = false)
+    public function refresh(Token $token, $forceForever = false, $resetClaims = false)
     {
         $this->setRefreshFlow();
-        return parent::refresh($token, $forceForever);
+        return parent::refresh($token, $forceForever,$resetClaims);
     }
 
 }

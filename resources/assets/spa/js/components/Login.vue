@@ -1,4 +1,13 @@
 <template>
+    <header>
+        <div class="navbar-fixed">
+            <nav >
+                <div class="nav-wrapper">
+                    <a href="#!" class="left hide-on-small-only brand-logo orange lighten-3 black-text">SISDS Financeiro&nbsp;</a>
+                </div>
+            </nav>
+        </div>
+    </header>
     <div class="container">
         <div class="row" style="margin-top: 5%;">
             <div class="col s8 offset-s2 z-depth-2">
@@ -57,7 +66,7 @@
         methods: {
             login(){
                 Auth.login(this.user.email,this.user.password)
-                        .then(() => this.$router.go({name: 'dashboard'}))
+                        .then(() => this.$router.go({name: 'menu'}))
                         .catch((responseError) => {
                             switch (responseError.status){
                                 case 401:

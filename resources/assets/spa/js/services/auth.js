@@ -3,7 +3,7 @@
  */
 import {Jwt} from './resources';
 import LocalStorage from './localStorage';
-import {User} from '../services/resources';
+import {User} from './resources';
 
 const TOKEN = 'token';
 const USER = 'user';
