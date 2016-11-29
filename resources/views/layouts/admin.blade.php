@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>SISDS Financeiro</title>
 
     <!-- Styles -->
     <link href="{{asset('css/admin.css')}}" rel="stylesheet">
@@ -28,15 +28,14 @@
                 $menuConfig = [
                         'name' => Auth::user()->name,
                         'menus' => [
-                                ['name' => 'Contas a pagar', 'url'  => '/help', 'dropdownId' => 'help'],
-                                ['name' => 'Contas a receber', 'url'  => '/teste1']
+                                ['name' => 'Administração', 'dropdownId' => 'admin'],
+                                ['name' => 'Ajuda', 'url'  => '/teste1']
                         ],
                         'menusDropdown' => [
                                 [
-                                        'id' => 'help',
+                                        'id' => 'admin',
                                         'items' => [
-                                                ['name' => 'Listar contas', 'url'  => '/listar'],
-                                                ['name' => 'Criar contas', 'url'  => '/criar']
+                                                ['name' => 'Banco', 'url'  => route('admin.banks.index')],
                                         ]
                                 ]
                         ],
