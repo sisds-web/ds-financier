@@ -33,11 +33,20 @@
             <div class="card-panel">
                 {!! Form::model($bank,[
                      'route'=>['admin.banks.update','bank'=>$bank->id],
-                     'method'=>'PUT'
+                     'method'=>'PUT','files'=>true
                      ]) !!}
-                @include('admin.banks._form')
+
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s12">
+                        <img src="{{ $bank->pathLogo().'/'.$bank->logo }}" />
+                    </div>
+                </div>
+
+                @include('admin.banks._form')
+
+
+                <div class="row">
+                    <div class="input-field col s12">
                         {!! Form::submit('Salvar',['class'=>'btn waves-effect']) !!}
                     </div>
                 </div>

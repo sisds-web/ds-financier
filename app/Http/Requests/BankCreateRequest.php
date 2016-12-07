@@ -24,7 +24,9 @@ class BankCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'cod'=>'required',
+            'name'=>'required|max:255',
+            'logo' => 'image'
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace DSFinancier\Providers;
 
+use DSFinancier\Events\BankUploadEvent;
+use DSFinancier\Listeners\BankUploadArqListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -13,9 +15,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'DSFinancier\Events\SomeEvent' => [
-            'DSFinancier\Listeners\EventListener',
-        ],
+        BankUploadEvent::class => [
+            BankUploadArqListener::class
+        ]
     ];
 
     /**

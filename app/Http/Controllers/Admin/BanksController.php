@@ -8,7 +8,7 @@ use Prettus\Validator\Exceptions\ValidatorException;
 use DSFinancier\Http\Requests\BankCreateRequest;
 use DSFinancier\Http\Requests\BankUpdateRequest;
 use DSFinancier\Repositories\BankRepository;
-
+use Illuminate\Support\Facades\Storage;
 
 class BanksController extends Controller
 {
@@ -113,7 +113,6 @@ class BanksController extends Controller
 
         try{
             $this->repository->update($request->all(),$id);
-
             /*$response = [
                 'message' => 'Dados Alterados com Sucesso.',
                 'data'    => $bank->toArray(),
@@ -141,16 +140,22 @@ class BanksController extends Controller
      */
     public function destroy($id)
     {
-        $deleted = $this->repository->delete($id);
+        $bank = $this->repository->find($id);
 
-        if (request()->wantsJson()) {
+        if($this->repository->delete($id)){
+            Storage::delete('public/banks/images/'.$bank->logo);
+        }
+
+
+
+        /*if (request()->wantsJson()) {
 
             return response()->json([
                 'message' => 'Bank deleted.',
                 'deleted' => $deleted,
             ]);
-        }
+        }*/
 
-        return redirect()->back()->with('message', 'Bank deleted.');
+        return redirect()->back()->with('success', 'Banco apagado com sucesso...!');
     }
 }

@@ -21,51 +21,60 @@
     </script>
 </head>
 <body>
-    <div id="app">
-        <header>
-            @if (Auth::check())
-                <?php
-                $menuConfig = [
-                        'name' => Auth::user()->name,
-                        'menus' => [
-                                ['name' => 'Administração', 'dropdownId' => 'admin'],
-                                ['name' => 'Ajuda', 'url'  => '/teste1']
-                        ],
-                        'menusDropdown' => [
-                                [
-                                        'id' => 'admin',
-                                        'items' => [
-                                                ['name' => 'Banco', 'url'  => route('admin.banks.index')],
-                                        ]
-                                ]
-                        ],
-                        'urlLogout' => env('REDIRECT_LOGOUT'),
-                        'csrfToken' => csrf_token()
-                ];
-                ?>
-                <admin-menu :config="{{ json_encode($menuConfig) }}"></admin-menu>
-            @else
-                <div class="row">
-                    <div class="col s12 blue-grey darken-4">
-                        <h4 class="white-text">SISDS Controle Financeiro</h4>
-                    </div>
-                </div>
-            @endif
-        </header>
-        <main>
-            @yield('content')
-        </main>
-        <footer class="page-footer">
-            <div class="footer-copyright">
-                <div class="container">
-                    © {{ date('Y') }} Todos os direitos reservados
-                    <a class="white-text" target="_blank" href="http://sisds.com.br"> SISDS-WEB</a>
+<div id="app">
+    <header>
+        @if (Auth::check())
+            <?php
+            $menuConfig = [
+                'name' => Auth::user()->name,
+                'menus' => [
+                    ['name' => 'Administração', 'dropdownId' => 'admin'],
+                    ['name' => 'Ajuda', 'url'  => route('admin.home'),'active'=>isRouteActive('admin.home')]
+                ],
+                'menusDropdown' => [
+                    [
+                        'id' => 'admin',
+                        'items' => [
+                            [
+                                'name' => 'Banco',
+                                'url'  => route('admin.banks.index'),
+                                'active'=>isRouteActive('admin.banks.index')
+                            ],
+                            [
+                                'name' => 'Agência',
+                                'url'  => route('admin.home'),
+                                'active'=>isRouteActive('admin.home')
+                            ]
+                        ]
+                    ]
+                ],
+                'urlLogout' => env('REDIRECT_LOGOUT'),
+                'csrfToken' => csrf_token()
+            ];
+            ?>
+            <admin-menu :config="{{ json_encode($menuConfig) }}"></admin-menu>
+        @else
+            <div class="row">
+                <div class="col s12 blue-grey darken-4">
+                    <h4 class="white-text">SISDS Controle Financeiro</h4>
                 </div>
             </div>
-        </footer>
-    </div>
+        @endif
+    </header>
+    <main>
+        @yield('content')
+    </main>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                © {{ date('Y') }} Todos os direitos reservados
+                <a class="white-text" target="_blank" href="http://sisds.com.br"> SISDS-WEB</a>
+            </div>
+        </div>
+    </footer>
+</div>
 
-    <!-- Scripts -->
-    <script src="{{asset('build/admin.bundle.js')}}"></script>
+<!-- Scripts -->
+<script src="{{asset('build/admin.bundle.js')}}"></script>
 </body>
 </html>

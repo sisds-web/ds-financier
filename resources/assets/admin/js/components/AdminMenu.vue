@@ -1,6 +1,6 @@
 <template>
     <ul :id='o.id' class='dropdown-content' v-for="o in config.menusDropdown">
-        <li v-for="item in o.items">
+        <li v-for="item in o.items" :class="menuItemClass(item)">
             <a :href="item.url">
                 {{item.name}}
             </a>
@@ -23,7 +23,7 @@
                     <i class="material-icons">menu</i>
                 </a>
                 <ul class="right hide-on-med-and-down">
-                    <li v-for="o in config.menus">
+                    <li v-for="o in config.menus" :class="menuItemClass(o)">
                         <a v-if="o.dropdownId" class="dropdown-submenu" href="!#" :data-activates="o.dropdownId">
                             {{o.name}} <i class="material-icons right">arrow_drop_down</i>
                         </a>
@@ -48,17 +48,17 @@
 <script type="text/javascript">
     export default {
         props:{
-          config:{
-              type: Object,
-              default(){
-                  return {
-                      name:'',
-                      menus: [],
-                      menusDropdown: [],
-                      urlLogout: '/admin/logout'
-                  }
-              }
-          }
+            config:{
+                type: Object,
+                default(){
+                    return {
+                        name:'',
+                        menus: [],
+                        menusDropdown: [],
+                        urlLogout: '/admin/logout'
+                    }
+                }
+            }
         },
         ready(){
             $(".button-collapse").sideNav();
@@ -67,6 +67,27 @@
         methods:{
             goToLogout(){
                 $('#logout-form').submit();
+            },
+            menuItemClass(menu){
+                let menuClass = ['active'];
+                if(menu.active){
+                    return menuClass;
+                }
+
+                if(menu.dropdownId !== undefined){
+                    let dropdown = this.config.menusDropdown.find((element) => {
+                        return element.id == menu.dropdownId;
+                    });
+
+                    if(dropdown){
+                        for(let o of dropdown.items){
+                            if(o.active){
+                                return menuClass;
+                            }
+                        }
+                    }
+
+                }
             }
         }
     };

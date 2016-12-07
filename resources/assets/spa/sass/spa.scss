@@ -1,18 +1,14 @@
 // Fonts
 @import url(http://fonts.googleapis.com/icon?family=Material+Icons);
-
-@import "node_modules/materialize-css/sass/components/color";
-
-// Variables
-@import "variables";
-
-// Bootstrap
+@import "node_modules/materialize-css/sass/components/color"; // Variables
+@import "variables"; // Bootstrap
 @import "node_modules/materialize-css/sass/materialize";
 
-.dropdown-content li > a, .dropdown-content li > span {
-  color: #000000;
+.dropdown-content li > a,
+.dropdown-content li > span {
+    color: #000000;
 }
 
 nav ul a {
-  color: #000000;
+    color: #000000;
 }

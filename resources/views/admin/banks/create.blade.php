@@ -30,10 +30,10 @@
                 @include('errors._error',['msg' => session('erro')])
             @endif
             <div class="card-panel">
-                {!! Form::open(['route'=>'admin.banks.store']) !!}
+                {!! Form::open(['route'=>'admin.banks.store','files'=>true]) !!}
                 @include('admin.banks._form')
                 <div class="row">
-                    <div class="input-field col s6">
+                    <div class="input-field col s12">
                         {!! Form::submit('Cadastrar',['class'=>'btn waves-effect']) !!}
                     </div>
                 </div>
