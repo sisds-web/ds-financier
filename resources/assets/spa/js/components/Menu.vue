@@ -50,13 +50,14 @@
                 menus:
                     [
                         {name: "DashBoard", routeName: 'dashboard',icon: '<i class="material-icons left">dashboard</i>'},
-                        {name: "Ajuda", routeName: 'menu', dropdownId:'menu-ajuda',icon: '<i class="material-icons left">live_help</i>'},
+                        {name: "Conta bancária", routeName: 'menu', dropdownId:'bank-account',icon: '<i class="material-icons left">account_balance</i>'},
                         {name: user, routeName: 'auth.logout',dropdownId:'menu-user',icon: '<i class="material-icons left">account_box</i>'}
                     ],
                 menusDropdown:[
                     {
-                        id:'menu-ajuda',items:[
-                            {name: "Ajuda", routeName: 'help'}
+                        id:'bank-account',items:[
+                            {name: "Listar", routeName: 'bank-account-list'},
+                            {name: "Cadastrar", routeName: 'bank-account-create'}
                         ]
                     },
                     {

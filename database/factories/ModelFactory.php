@@ -28,3 +28,14 @@ $factory->state(\DSFinancier\Models\User::class,'admin',function (Faker\Generato
         'role'=> \DSFinancier\Models\User::ROLE_ADMIN
     ];
 });
+
+
+
+$factory->define(\DSFinancier\Models\BankAccount::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->city,
+        'agency' => rand(10000,60000).'-'.rand(0,9),
+        'account' => rand(70000,260000).'-'.rand(0,9)
+    ];
+});

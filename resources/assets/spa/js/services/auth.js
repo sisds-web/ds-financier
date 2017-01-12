@@ -1,11 +1,10 @@
 /**
  * Serviço responsável pela parte de autenticação da aplicação Cliente
  */
-import {Jwt} from './resources';
+import JwtToken from './jwt-token';
 import LocalStorage from './localStorage';
 import {User} from './resources';
 
-const TOKEN = 'token';
 const USER = 'user';
 
 /**
@@ -19,8 +18,7 @@ const afterLogin = (response) => {
 
 export default {
     login(email,password){
-        return Jwt.accessToken(email,password).then((response) =>{
-            LocalStorage.set(TOKEN,response.data.token);
+        return JwtToken.accessToken(email,password).then((response) =>{
             afterLogin(response);
             return response;
         });
@@ -31,25 +29,15 @@ export default {
             this.clearAuth();
         };
 
-        return Jwt.logout().then(afterLogout()).catch(afterLogout());
-    },
-    refreshToken(){
-        return Jwt.refreshToken().then((response) => {
-            LocalStorage.set(TOKEN,response.data.token);
-            return response;
-        });
-    },
-    getAutorizationHeader(){
-        return `Bearer ${LocalStorage.get(TOKEN)}`;
+        return JwtToken.revokeToken().then(afterLogout()).catch(afterLogout());
     },
     user(){//Retornando o usuario em formato de objeto JS
         return LocalStorage.getObject(USER);
     },
     checkAuth(){
-        return LocalStorage.get(TOKEN) ? true : false;
+        return JwtToken.token ? true : false;
     },
     clearAuth(){
-        LocalStorage.remove(TOKEN);
         LocalStorage.remove(USER);
     }
 }

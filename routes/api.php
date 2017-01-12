@@ -19,6 +19,12 @@ Route::group(['middleware'=>'cors', 'as' => 'api'],function(){
     Route::post('refresh-token','Api\AuthController@refreshToken')->name('refresh-token');
 
     Route::group(['middleware'=>'auth:api'],function(){
+
+        Route::get('banks','Api\BanksApiController@index')->name('banks');
+
+        Route::resource('bank_accounts','Api\BankAccountsController',
+            ['except'=>['create','edit']]);
+
         Route::get('/user', function (Request $request) {
             $user = $request->user('api');
             return $user;
