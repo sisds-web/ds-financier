@@ -1,6 +1,6 @@
 *
 !files
 !files/**/**
-!public/
+!public/**/**
 !.gitignore
 
