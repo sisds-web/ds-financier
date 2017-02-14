@@ -25,11 +25,14 @@ export default {
     },
     logout(){
 
-        let afterLogout = () =>{
+        let afterLogout = (response) =>{
             this.clearAuth();
+            return response;
         };
 
-        return JwtToken.revokeToken().then(afterLogout()).catch(afterLogout());
+        return JwtToken.revokeToken()
+            .then(afterLogout)
+            .catch(afterLogout);
     },
     user(){//Retornando o usuario em formato de objeto JS
         return LocalStorage.getObject(USER);

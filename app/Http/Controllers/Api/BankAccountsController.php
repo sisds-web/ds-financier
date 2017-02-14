@@ -35,8 +35,7 @@ class BankAccountsController extends Controller
      */
     public function index()
     {
-        $bankAccounts = $this->repository->all();
-
+        $bankAccounts = $this->repository->paginate(10);
         return $bankAccounts;
     }
 
@@ -53,7 +52,7 @@ class BankAccountsController extends Controller
         $bankAccount = $this->repository->create($request->all());
 
         //Retorna Status code 201 = created (criado)
-        return response()->json($bankAccount->toArray(),201);
+        return response()->json($bankAccount,201);
 
     }
 
@@ -67,10 +66,10 @@ class BankAccountsController extends Controller
      */
     public function show($id)
     {
-        $bankAccount = $this->repository->find($id);
+        $bankAccount = $this->repository->skipPresenter(true)->find($id);
 
         //Retorna Status code 200 = realizado com sucesso , por padrão
-        return response()->json($bankAccount->toArray());
+        return response()->json($bankAccount);
 
     }
 
@@ -85,7 +84,7 @@ class BankAccountsController extends Controller
     public function edit($id)
     {
 
-        $bankAccount = $this->repository->find($id);
+        $bankAccount = $this->repository->skipPresenter(true)->find($id);
 
         return view('bankAccounts.edit', compact('bankAccount'));
     }
@@ -104,7 +103,7 @@ class BankAccountsController extends Controller
 
         $bankAccount = $this->repository->update($request->all(),$id);
         //Retorna Status code 200 = realizado com sucesso , por padrão
-        return response()->json($bankAccount->toArray());
+        return response()->json($bankAccount);
 
     }
 

@@ -34,12 +34,14 @@
 </template>
 
 <script type="text/javascript">
+
     import LocalStorage from '../services/localStorage';
     let userOBJ = LocalStorage.getObject('user');
     let user = '';
     if(userOBJ){
         user = userOBJ.name;
     }
+
     export default {
         ready(){
             $(".button-collapse").sideNav();
@@ -65,7 +67,7 @@
                             {name: "logout", routeName: 'auth.logout'}
                         ]
                     }
-                ]
+                ],
             }
         }
     };

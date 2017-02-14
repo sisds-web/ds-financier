@@ -9,6 +9,20 @@
     color: #000000;
 }
 
+body{
+    background-color: color('orange','lighten-5');
+}
+
 nav ul a {
     color: #000000;
+}
+
+.spinner{
+    @extend .progress;
+    margin: 0;
+}
+.spinner-fixed{
+    width: 100%;
+    position: fixed;
+    z-index: 998;
 }

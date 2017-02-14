@@ -10,7 +10,7 @@
     </header>
     <div class="container">
         <div class="row" style="margin-top: 5%;">
-            <div class="col s8 offset-s2 z-depth-2">
+            <div class="card-panel col s8 offset-s2 z-depth-2">
                 <h5 class="center">SISDS-Financeiro</h5>
                 <div class="row" v-if="error.error">
                     <div class="col s12">
